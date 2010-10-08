@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+		<title>添加修改问题</title>
+		
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="" />
+		<meta name="MSSmartTagsPreventParsing" content="true" />
+
+		<meta http-equiv="imagetoolbar" content="no" />
+		<meta name="robots" content="index, follow" />
+		
+		<link href="/static/css/reset.css" type="text/css" rel="stylesheet" media="all">
+		<link href="/static/css/form.css" type="text/css" rel="stylesheet" media="all">
+
+	
+		<script type="text/javascript" src="/static/js/jquery-1.3.1.min.js"></script>
+		<script type="text/javascript" src="/static/js/df.js"></script>	
+		 <script type="text/javascript">
+		$(document).ready(function() {
+			$("button[name='cancel']").click(function() {
+				var input = $(':input');
+				input.each(function(i) {
+					$(this).rules('remove');
+				});
+				
+				$(':input').removeClass('required').addClass('ignore');
+				$('#question-form').validate({ignore: '.ignore'});
+			});
+			
+			$("#question-form #removable-choice-container-1").dynamicField();
+		});
+    </script>
+
+		
+</head>
+<body>
+
+
+		<form action="." method="post" enctype="application/x-www-form-urlencoded" id="question-form" class="add_question">
+		
+<fieldset>
+		{% include template %}
+ </fieldset>
+ <input type="submit" value="保存" />
+ 
+		</form> 
+
+
+
+</body>
+</html>

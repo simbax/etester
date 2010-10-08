@@ -1,0 +1,88 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+		<title>�����޸�����</title>
+		
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="" />
+		<meta name="MSSmartTagsPreventParsing" content="true" />
+
+		<meta http-equiv="imagetoolbar" content="no" />
+		<meta name="robots" content="index, follow" />
+		
+		<link href="exam/css/reset.css" type="text/css" rel="stylesheet" media="all">
+		<link href="exam/css/form.css" type="text/css" rel="stylesheet" media="all">
+
+	
+		<script type="text/javascript" src="exam/js/jquery-1.3.1.min.js"></script>
+		<script type="text/javascript" src="exam/js/df.js"></script>	
+		 <script type="text/javascript">
+	$(document).ready(function() {
+			$("button[name='cancel']").click(function() {
+				var input = $(':input');
+				input.each(function(i) {
+					$(this).rules('remove');
+				});
+				
+				$(':input').removeClass('required').addClass('ignore');
+				$('#question-form').validate({ignore: '.ignore'});
+			});
+			
+			$("#question-form #removable-choice-container-1").dynamicField();
+		});
+
+    </script>
+
+		
+</head>
+<body>
+
+
+	<form action="." method="post" enctype="application/x-www-form-urlencoded" id="question-form" class="add_question">
+		
+<fieldset>
+		
+		
+
+			<div class="choice-form">
+			<div class="qcon">{{form.qcon.errors}}<lable for="id_qcon">题面：</lable>{{form.qcon}}</div>
+			<div class="ctrlHolder">
+					<div id="removable-choice-container-1" class="removable-field-row">
+						<label for="id_choice_1">选项</label>
+						<input name="choice_1" id="id_choice_1" class="textInput removable" type="text">
+						<input name="choice_1" id="id_choice_1" class="textInput removable" type="radio">
+						<img src="/static/commonassets/images/icons/cross.png" alt="" title="Remove This Item" class="remove-field-trigger" height="16" width="16">
+					</div>
+					<div id="add-choice-container" class="add-field-container">
+						<span class="add-field-trigger">
+							<img src="/static/commonassets/images/icons/add.gif" alt="" title="Add New Item">
+							添加选项
+						</span>
+					</div>
+				</div>
+				<div class="qkey">{{form.qkey.errors}}<lable for="id_qkey">标准答案：</lable>{{form.qkey}}</div>
+				<div class="qscore">{{form.qscore.errors}}<lable for="id_qscore">分数：</lable>{{form.qscore}}</div>
+				<div class="qlevel">{{form.qlevel.errors}}<lable for="id_qlevel">难度：</lable>{{form.qlevel}}</div>
+				<div class="qexp">{{form.qexp.errors}}<lable for="id_qexp">答案解析：</lable>{{form.qexp}}</div>
+</div>
+
+
+ </fieldset>
+ <input type="submit" value="保存" />
+ 
+		</form>
+
+
+
+</body>
+</html>
+
+
+
+
+
+

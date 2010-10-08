@@ -1,0 +1,21 @@
+body { 	background-color: white; font-family: 'Lucida Grande', Geneva, Verdana, Arial, Helvetica, sans-serif; }
+/*定义整体form样式：宽度、边框、外边距、内边距*/
+#question-form{width:760px; border:1px solid grey; margin:10px auto; padding:10px;background-color:#cee1ee}
+
+
+/*定义form构成的元素的样式：
+ *公共样式：外边距、内边距
+ * */
+.clear{clear:both;}
+.qcon, .qask-key, .qscore, .qlevel, .qexp, .no-choice-key{margin:20px; padding:5px;}
+.qcon textarea{margin:10px 0 0 10px; width:600px; height:100px;}
+/*定义选择题选项和答案样式*/
+.qkey{width:60px;float:left;}
+.qask{width:600px;float:left;}
+.qask textarea{margin:15px 0 0 10px; width:500px; height:60px;}
+.qkey ul{width:50px;}
+.qkey li{margin-top:15px; padding-top:27px;width:50px; height:35px;}
+/*非选择题答案样式*/
+.no-choice-key ul li{display:inline;}
+/*答案解析样式*/
+.qexp textarea{margin:10 0 0 10px; width:600px; height:150px;}
