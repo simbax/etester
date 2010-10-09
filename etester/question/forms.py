@@ -30,8 +30,8 @@ class SingleChoiceForm(QuestionForm):
                 empty_permitted=False, instance=None, option_count=4):
         super(SingleChoiceForm,self).__init__(date,files,auto_id,prefix,initial,
                                                 error_class, label_suffix,empty_permitted,instance)
-        self.fields['qask'] = OptionsField(option_count=option_count)
-        self.fields['qkey'] = forms.ChoiceField(widget=forms.RadioSelect,
+        self.fields['qask'] = OptionsField(option_count=option_count,label="选项A")
+        self.fields['qkey'] = forms.ChoiceField(widget=forms.RadioSelect,label="参考答案",
                                                 choices=get_choices(option_count=option_count))
 
 
@@ -44,7 +44,7 @@ class MultiChoiceForm(SingleChoiceForm):
         super(MultiChoiceForm,self).__init__(date,files,auto_id,prefix,initial,
                                             error_class, label_suffix,empty_permitted,instance)
         self.fields['qkey'] = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
-                                    choices=get_choices(option_count))
+                                label="参考答案",choices=get_choices(option_count))
 
 
     def clean(self):
@@ -69,13 +69,13 @@ def get_question_form_class(q_type='1'):
         return FillBlankForm
 
 def get_question_form_fields(q_type='1'):
-    fields = ['bank','qcon','qkey','qscore','qlevel','qexp','qchapter']
+    fields = ['bank','qcon','qask','qkey','qscore','qlevel','qexp','qchapter']
     if q_type == '1' :
-        fields.append('qask')
+        pass
     if q_type == '2' :
-        fields.append('qask')
+        pass
     if q_type == '3' :
-        pass
+        fields.remove('qask')
     if q_type == '4' :
-        pass
+        fields.remove('qask')
     return fields
