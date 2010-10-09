@@ -26,6 +26,7 @@ class QuestionAdmin(admin.ModelAdmin):
     list_display = ('qcon','bank','qtype','qchapter','is_checked','user','created_time')
     list_filter = ['bank','qtype']
     search_fields = ['qcon',]
+    change_list_template = 'admin/question/change_list.html'
 #TODO:没有实现选择题选项的动态增加;
 # 通过动态修改self.fields属性实现审核权限的分配。
     def get_form(self, request, obj=None, **kwargs):

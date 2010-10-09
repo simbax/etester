@@ -24,6 +24,11 @@ def get_choices(option_count=4):
 class QuestionForm(ModelForm):
     class Meta:
         model = Question
+
+    def _media(sele):
+        return forms.Media(css={'all':('css/admin/question/form.css',)},)
+    media = property(_media)
+
 class SingleChoiceForm(QuestionForm):
     def __init__(self, date=None, files=None, auto_id='id_%s', prefix=None,
                 initial=None, error_class=ErrorList, label_suffix=':',
@@ -53,8 +58,7 @@ class MultiChoiceForm(SingleChoiceForm):
         return self.cleaned_data
 
 class TrueFalseForm(QuestionForm):
-    qkey = forms.ChoiceField(label='question answer',
-                            widget=forms.RadioSelect, choices=_choices2)
+    qkey = forms.ChoiceField(label='参考答案',widget=forms.RadioSelect, choices=_choices2)
 
 class FillBlankForm(QuestionForm):
     pass
