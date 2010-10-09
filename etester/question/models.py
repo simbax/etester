@@ -23,8 +23,8 @@ class QuestionBank(models.Model):
     class Meta:
         ordering = ['-updated_time',]
         get_latest_by = 'updated_time'
-        verbose_name_plural = '题库列表'
-        verbose_name = '题库列表'
+        verbose_name_plural = '<banks>题库'
+        verbose_name = '<bank>题库'
 
     def __unicode__(self):
         return self.name
@@ -100,8 +100,8 @@ class Question(models.Model):
     class Meta:
         get_latest_by=['updated_time',]
         ordering = ['-updated_time']
-        verbose_name_plural = '试题列表'
-        verbose_name = '试题列表'
+        verbose_name_plural = '试题'
+        verbose_name = '试题'
      
     def __unicode__(self):
         if len(self.qcon)>20:
