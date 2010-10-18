@@ -83,3 +83,24 @@ def get_question_form_fields(q_type='1'):
     if q_type == '4' :
         fields.remove('qask')
     return fields
+
+
+class SingleChoiceAnswerForm(forms.Form):
+    def __init__(self, options=[], *args, **kwargs):
+        super(SingleChoiceAnswerForm, self).__init__(*args,**kwargs)
+        self.fields['qkey'] = forms.ChoiceField(widget=forms.RadioSelect,choices=options)
+
+class MultiChoiceAnswerForm(forms.Form):
+    def __init__(self, options=[], *args, **kwargs):
+        super(MultiChoiceAnswerForm, self).__init__(*args, **kwargs)
+        self.fields['qkey'] = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
+                                                                choices=options)
+
+class FillBlankAnswerForm(forms.Form):
+    def __init__(self,num=1,*args, **kwargs):
+        super(FillBlankAnswerForm,self).__init__(*args,**kwargs)
+        for i in range(num):
+            self.fields['qkey']= forms.CharField( max_length=100)
+
+class TrueFalseAnswerForm(forms.Form):
+    qkey = forms.ChoiceField(widget=forms.RadioSelect, choices=_choices2)

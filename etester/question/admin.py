@@ -45,7 +45,7 @@ class QuestionAdmin(admin.ModelAdmin):
         if user.is_superuser:
             return super(QuestionAdmin,self).queryset(request)
         else:
-            qs = Question.objects.filter(user=user)
+            qs = super(QuestionAdmin, self).queryset(request).filter(user=user)
             return qs
 
     def save_model(self, request, obj, form, change):

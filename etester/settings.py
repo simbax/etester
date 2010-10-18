@@ -1,4 +1,3 @@
-# Django settings for etester project.
 #coding:utf-8
 from os.path import dirname, join
 _dir = dirname(__file__)
@@ -81,6 +80,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    'south',
     'question',
+    'paper',
     )
