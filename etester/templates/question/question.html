@@ -1,0 +1,57 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+		<title>question</title>
+		
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="" />
+		<meta name="MSSmartTagsPreventParsing" content="true" />
+
+		<meta http-equiv="imagetoolbar" content="no" />
+		<meta name="robots" content="index, follow" />
+		
+		<link href="exam/css/reset.css" type="text/css" rel="stylesheet" media="all">
+		<link href="exam/css/form.css" type="text/css" rel="stylesheet" media="all">
+
+	
+		<script type="text/javascript" src="exam/js/jquery-1.3.1.min.js"></script>
+		<script type="text/javascript" src="exam/js/jquery.dynamicField-1.0.js"></script>	
+</head>
+<body>
+<form action="." method="post" enctype="application/x-www-form-urlencoded" id="question-form" class="add_question">
+	<fieldset>
+			<div class="choice-form">
+                <div class="qcon"><p>{{q.qcon}}</p></div>
+                <div class="qask">{{form.as_p}}</div>
+                {% if flag %}
+                <div>
+                    {% if flag == 'True' %}<p>答对了</p>{% endif%}
+                    {% if flag == 'False' %}<p>答错了</p>{% endif%}
+                    {% if flag == 'None' or flag == 'False'%}<p>参考答案：{{q.qkey}}</p>{% endif%}
+                
+                
+                </div>
+                <div class="qexp"><lable for="id_qexp">答案解析：</lable>{{q.qexp}}</div>
+                {% endif %}
+            </div>
+
+
+ </fieldset>
+ <input type="submit" value="提交" />
+ 
+		</form>
+
+
+
+</body>
+</html>
+
+
+
+
+
+

@@ -1,9 +1,12 @@
 #coding:utf-8
+import cPickle as pickle
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
+from question.answer import SingleChoiceAnswerForm, MultiChoiceAnswerForm, FillBlankAnswerForm, TrueFalseAnswerForm
 
 # Create your models here.
 
@@ -120,3 +123,33 @@ class Question(models.Model):
     
     def get_change_question_url(self):
         return reverse('exam.views.change_question_view',kwargs={'q_id':self.pk})
+
+    def get_ask(self):
+        if self.qask:
+            value = pickle.loads(self.qask.encode())
+            return value
+    def get_answer_form(self,data=None, *args, **kwargs):
+        if self.qtype == 1:
+            return SingleChoiceAnswerForm(options=self.get_ask(),data=data,*args,**kwargs)
+        elif self.qtype == 2:
+            return MultiChoiceAnswerForm(options=self.get_ask(),data=data,*args,**kwargs)
+        elif self.qtype == 4:
+            return FillBlankAnswerForm(data=data,*args,**kwargs)
+        elif self.qtype == 3:
+            return TrueFalseAnswerForm(data=data,*args,**kwargs)
+        else:
+            pass
+    
+    def check_answer(self, user_key):
+        if self.qtype == 1 or self.qtype == 2 or self.qtype == 3:
+            if self.qkey == user_key:
+                return 'True'
+            elif self.qkey == unicode(user_key):
+                return 'True'
+            else:
+                return 'False'
+        else:
+            return 'None'
+    def get_exer_question_url(self):
+        return reverse('question.views.question_view',kwargs={'q_id':self.pk})
+

@@ -20,7 +20,7 @@ urlpatterns = patterns('',
     #(r'^q/add/(?P<q_bank>\d+)/(?P<q_type>\d+)/(?P<num>\d+)/$', 'exam.views.add_question_view'),
     #(r'^q/add/(?P<q_type>\d+)/$', 'exam.views.question', {'template':'exam/question.html',}),
     #(r'^q/edit/(?P<q_id>\d+)/$', 'exam.views.change_question_view'),
-    #(r'quiz/(?P<q_id>\d+)/$', 'exam.views.quiz'), 
+    (r'exer/(?P<q_id>\d+)/$', 'question.views.question_view'), 
                        
 )
 

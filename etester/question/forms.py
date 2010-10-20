@@ -17,7 +17,7 @@ _choices2 = (
             ('False',u'错误'),)
 #get 2-list composed by A..Z.
 def get_choices(option_count=4):
-    options=[(chr(i), chr(i)) for i in range(65, 65+option_count)]
+    options=[(chr(i), u'选项'+chr(i)) for i in range(65, 65+option_count)]
     return options
 
 
@@ -35,7 +35,7 @@ class SingleChoiceForm(QuestionForm):
                 empty_permitted=False, instance=None, option_count=4):
         super(SingleChoiceForm,self).__init__(date,files,auto_id,prefix,initial,
                                                 error_class, label_suffix,empty_permitted,instance)
-        self.fields['qask'] = OptionsField(option_count=option_count,label="选项A")
+        self.fields['qask'] = OptionsField(option_count=option_count,label="A")
         self.fields['qkey'] = forms.ChoiceField(widget=forms.RadioSelect,label="参考答案",
                                                 choices=get_choices(option_count=option_count))
 
@@ -85,22 +85,4 @@ def get_question_form_fields(q_type='1'):
     return fields
 
 
-class SingleChoiceAnswerForm(forms.Form):
-    def __init__(self, options=[], *args, **kwargs):
-        super(SingleChoiceAnswerForm, self).__init__(*args,**kwargs)
-        self.fields['qkey'] = forms.ChoiceField(widget=forms.RadioSelect,choices=options)
 
-class MultiChoiceAnswerForm(forms.Form):
-    def __init__(self, options=[], *args, **kwargs):
-        super(MultiChoiceAnswerForm, self).__init__(*args, **kwargs)
-        self.fields['qkey'] = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
-                                                                choices=options)
-
-class FillBlankAnswerForm(forms.Form):
-    def __init__(self,num=1,*args, **kwargs):
-        super(FillBlankAnswerForm,self).__init__(*args,**kwargs)
-        for i in range(num):
-            self.fields['qkey']= forms.CharField( max_length=100)
-
-class TrueFalseAnswerForm(forms.Form):
-    qkey = forms.ChoiceField(widget=forms.RadioSelect, choices=_choices2)
