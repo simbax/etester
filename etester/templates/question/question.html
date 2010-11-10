@@ -32,8 +32,6 @@
                     {% if flag == 'True' %}<p>答对了</p>{% endif%}
                     {% if flag == 'False' %}<p>答错了</p>{% endif%}
                     {% if flag == 'None' or flag == 'False'%}<p>参考答案：{{q.qkey}}</p>{% endif%}
-                
-                
                 </div>
                 <div class="qexp"><lable for="id_qexp">答案解析：</lable>{{q.qexp}}</div>
                 {% endif %}

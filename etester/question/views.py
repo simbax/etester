@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, render_to_response
 
 from question.models import Question
 
-def question_view(request,q_id,):
+def question_view(request,q_id):
     q = get_object_or_404(Question,pk=q_id)
     context = {}
     context['q'] = q

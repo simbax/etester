@@ -1,0 +1,50 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+		<title>paper</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+</head>
+<body>
+<form action="." method="post" enctype="application/x-www-form-urlencoded" >
+<fieldset>
+    {% for i in qs %}
+	<div class="question">
+    <div class="qcon"><p>{{i.question.qcon}}</p></div>
+        {% for key, value in forms.items %}
+        {% if key == i.question.pk %}
+        <div class="qask">{{ value.as_p }}</div>
+        {% endif %}
+        {% endfor %}
+        {% if keys %}
+        {% for key, value in keys.items %}
+        {% if key == i.question.pk %}
+        <div>
+            {% if value == 'True' %}<p>答对了</p>{% endif%}
+                    {% if value == 'False' %}<p>答错了</p>{% endif%}
+                    {% if value == 'None' or value == 'False'%}<p>参考答案：{{i.question.qkey}}</p>{% endif%}
+                </div>
+        {% endif %}
+        {% endfor %}
+                <div class="qexp"><lable for="id_qexp">答案解析：</lable>{{i.question.qexp}}</div>
+                {% endif %}
+            </div>
+    {% endfor %}
+
+
+ </fieldset>
+ <input type="submit" value="提交" />
+ 
+		</form>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
